@@ -55,7 +55,7 @@ def infer(img):
         # }
         class_map = [np.array([255, 255, 0]), np.array([255, 0, 0]), np.array([0, 0, 255]),
                      np.array([0, 255, 0]), np.array([0, 0, 0])]
-        pred = logits.argmax(1)[0]
+        pred = logits.argmax(1)[0].cpu().detach().numpy()
         pred_colored = form_colormap(pred, np.array(class_map))
 
     return pred_colored
