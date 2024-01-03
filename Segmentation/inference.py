@@ -2,7 +2,7 @@ import numpy as np
 import torch
 import PIL.Image as Image
 
-from Segmentation.model.unet_resnet50 import UNetWithResnet50Encoder
+from model.unet_resnet50 import UNetWithResnet50Encoder
 import torchvision.transforms as transforms
 import argparse
 
@@ -63,12 +63,12 @@ def infer(img):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--input_path', type=str, default='', help='input data path')
-    parser.add_argument('--output_path', type=str, default='', help='output save path')
-    parser.add_argument('--output_file_name', type=str, default='', help='output save file name[ex) temp.jpg]')
+    parser.add_argument('--input_path', type=str, default='D:/Side/AI_FACTORY/Clipping/K3A_20200504045549_28203_00042683_L1R_PS/K3A_20200504045549_28203_00042683_L1R_br.jpg', help='input data path')
+    parser.add_argument('--output_path', type=str, default='D:/Side/AI_FACTORY/backup/UnetResnet50_newLoader/ai_factory_data_sample', help='output save path')
+    parser.add_argument('--output_file_name', type=str, default='K3A_20200504045549_28203_00042683_L1R_br.jpg', help='output save file name[ex) temp.jpg]')
     args = parser.parse_args()
 
-    img = Image.open(args.intput_path).convert('RGB')
+    img = Image.open(args.input_path).convert('RGB')
     pred = infer(img)
     pred = Image.fromarray(pred)
     pred.save(f'{args.output_path}/{args.output_file_name}')
